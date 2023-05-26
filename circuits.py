@@ -34,7 +34,7 @@ def circuit_builder(states, n0, n2):
         
         qc.barrier()
         
-        # Apply IQFT on the first n1 qubit (Rule 1)
+        # Apply IQFT on the first n1 qubits (Rule 1)
         qc.compose(QFT(num_qubits=n1, approximation_degree=0, do_swaps=True, \
                        inverse=True, insert_barriers=True, name='IQFT'), \
                        qubits = q[0:n1], inplace = True)
@@ -69,7 +69,7 @@ def reconstruction(qcs, n2, shots, norm):
         
         out = np.zeros(2**n2) # Shape (1, 2**n2)
         
-        # Compute all the possible n2-qubits configurations
+        # Generate all the possible n2 qubits configurations
         cfgs = list(product(('0','1'), repeat = n2))
         cfgs = [''.join(cfg) for cfg in cfgs] 
         for i in range(2**n2):

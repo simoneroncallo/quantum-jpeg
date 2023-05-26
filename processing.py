@@ -46,7 +46,7 @@ def vectorization(img, Cr, Cc, renorm = False):
 def devectorization(out_freq):
     """ Reconstruct an image using the simulation output. The function 
     operates as follows:
-        1. Devectorize each of the S arrayw in "out_freq" to 
+        1. Devectorize each of the S arrays in "out_freq" to 
             a (2**(n2/2), 2**(n2/2)) patch.
         2. Recombine the patches in a single object called "decoded_img" with 
         shape (Mr, Mc). 
