@@ -1,7 +1,8 @@
 import numpy as np
 from itertools import product
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from qiskit import transpile, Aer
+from qiskit import transpile
+from qiskit_aer import AerSimulator
 from qiskit.circuit.library import QFT
 
 def circuit_builder(states, n0, n2):
@@ -59,7 +60,7 @@ def reconstruction(qcs, n2, shots, norm):
     out_freq = np.zeros((len(qcs), 2**n2)) # Shape (S, 2**n2)
     
     for idx in range(len(qcs)):
-        simulator = Aer.get_backend('aer_simulator')
+        simulator = AerSimulator()
         qcs[idx] = transpile(qcs[idx], simulator)
         result = simulator.run(qcs[idx], shots = shots).result()
         
